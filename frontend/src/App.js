@@ -33,6 +33,11 @@ function App() {
     }
   }
 
+  const cancelUpdate = () => {
+    setIsUpdating(false)
+    setText("")
+  }
+
   return (
     <div className="App">
       <div className="container">
@@ -47,10 +52,11 @@ function App() {
           />)}
         </div>
 
-        <div className = "todoAdd">
+        <div className = "todoAddUpdate">
           <input type="text" placeholder="Add todos" value={text} onChange={(e) => setText(e.target.value)}/>
-          <div className='addUpdateBtn' onClick={handleAddUpdate}>
-            {isUpdating ? "Update" : "Add"}
+          <div className="actions" onClick={handleAddUpdate}>
+            {isUpdating ? <button className="cancelUpdate" onClick={cancelUpdate}>Cancel</button> : ""}
+            {isUpdating ? <span className="addUpdateBtn">Update</span> : <span className="addUpdateBtn">Add</span>}
           </div>
         </div>
       

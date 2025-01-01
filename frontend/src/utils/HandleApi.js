@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const baseUrl = "http://localhost:5000"
 
@@ -19,6 +20,7 @@ const addTodo = (text, setText, setTodo) => {
         console.log(data);
         setText("")
         getAllTodo(setTodo)
+        toast.success("Todo Successfully Added!");
     })
     .catch((err) => console.log(err))
 }
@@ -30,6 +32,7 @@ const updateTodo = (todoId, text, setText, setTodo, setIsUpdating) => {
         setText("")
         setIsUpdating(false)
         getAllTodo(setTodo)
+        toast.success("Todo Successfully Updated!");
     })
     .catch((err) => console.log(err))
 }
@@ -40,6 +43,7 @@ const deleteTodo = (_id, setTodo) => {
     .then((data) => {
         console.log(data)
         getAllTodo(setTodo)
+        toast.success("Todo Successfully Deleted!");
     })
     .catch((err) => console.log(err))
 }

@@ -46,14 +46,14 @@ h1{
   gap: 20px;
 }
 
-.todoAdd{
+.todoAddUpdate{
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 8px;
 }
 
-.todoAdd input{
+.todoAddUpdate input{
   position: relative;
   width: 100%;
   padding: 14px 15px;
@@ -67,26 +67,43 @@ input[type="text"]:focus {
   outline: none;
 }
 
-.addUpdateBtn{
+.actions{
   position: absolute;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
   right: 0;
+}
+.addUpdateBtn{
   font-weight: bold;
   color: white;
   background-color: rgb(72, 124, 167);
-  padding: 12px 36px;
+  padding: 12px 30px;
   border-radius: 30px;
   cursor: pointer;
 }
 
-.addUpdateBtn:hover{
+.cancelUpdate{
+  background-color: transparent;
+  border: none;
+  color: rgb(56, 102, 139);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
+.addUpdateBtn:hover{
+  background-color: rgb(58, 106, 146);
+}
+.addUpdateBtn:active{
+  background-color: rgb(28, 60, 87);
 }
 
 @media screen and (max-width: 920px){
-    .container{
-      width: 80%;
-    }
+  .container{
+    width: 80%;
+  }
 }
 @media screen and (max-width: 623px){
   .container{
