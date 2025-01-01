@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Todo from './components/Todo';
 import { deleteTodo, updateTodo, addTodo, getAllTodo } from './utils/HandleApi';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
 
@@ -20,6 +21,18 @@ function App() {
     setTodoId(_id)
   }
 
+  const handleAddUpdate = () => {
+    if(!text.trim()){
+      toast.error("Text is required!");
+      return;
+    }
+    if(isUpdating){
+      updateTodo(todoId, text, setText, setTodo, setIsUpdating)
+    } else{
+      addTodo(text, setText, setTodo)
+    }
+  }
+
   return (
     <div className="App">
       <div className="container">
@@ -36,13 +49,15 @@ function App() {
 
         <div className = "todoAdd">
           <input type="text" placeholder="Add todos" value={text} onChange={(e) => setText(e.target.value)}/>
-          <div className='addBtn' onClick={isUpdating ? () => updateTodo(todoId, text, setText, setTodo, setIsUpdating) : () => addTodo(text, setText, setTodo)}>
+          <div className='addUpdateBtn' onClick={handleAddUpdate}>
             {isUpdating ? "Update" : "Add"}
           </div>
         </div>
       
       </div>
+      <ToastContainer />
     </div>
+    
   );
 }
 

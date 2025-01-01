@@ -67,7 +67,7 @@ input[type="text"]:focus {
   outline: none;
 }
 
-.addBtn{
+.addUpdateBtn{
   position: absolute;
   display: inline-block;
   right: 0;
@@ -76,5 +76,20 @@ input[type="text"]:focus {
   background-color: rgb(72, 124, 167);
   padding: 12px 36px;
   border-radius: 30px;
- 
+  cursor: pointer;
+}
+
+.addUpdateBtn:hover{
+
+}
+
+@media screen and (max-width: 920px){
+    .container{
+      width: 80%;
+    }
+}
+@media screen and (max-width: 623px){
+  .container{
+    width: 90%;
+  }
 }

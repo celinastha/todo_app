@@ -12,10 +12,12 @@
 }
 
 .todoText{
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     position: relative;
     padding-left: 40px;
-    cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -39,32 +41,33 @@ input[type="checkbox"]{
     border-radius: 50%;
     background-color: #f4f9ff;
     border: 1px solid #a4b6cc;
+    cursor: pointer;
 }
 
 .todoText:hover input ~ .checkmark {
     background-color: #e4eaf3;
   }
   
-  /* When the checkbox is checked, add a blue background */
-  .todoText input:checked ~ .checkmark {
+
+.todoText input:checked ~ .checkmark {
     background-color: rgb(74, 126, 168);
     border: none;
   }
   
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
   
-  /* Show the checkmark when checked */
-  .todoText input:checked ~ .checkmark:after {
+
+.todoText input:checked ~ .checkmark:after {
     display: block;
   }
   
-  /* Style the checkmark/indicator */
-  .todoText .checkmark:after {
+
+.todoText .checkmark:after {
     left: 6px;
     top: 2px;
     width: 5px;
@@ -85,4 +88,11 @@ input[type="checkbox"]{
 
 .icon{
     font-size: 1.3em;
+    cursor: pointer;
 }
+
+.checked { 
+    text-decoration: line-through; 
+    color: grey;
+}
+
