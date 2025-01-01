@@ -1,5 +1,6 @@
 import React from 'react'
 import './Todo.css'
+import { MdDelete } from "react-icons/md";
 import {BiEdit} from 'react-icons/bi'
 import {AiFillDelete} from 'react-icons/ai'
 
@@ -16,7 +17,7 @@ const Todo = ({text, updateMode, deleteTodo}) => {
         </div>
         <div className="icons">
             <BiEdit className="icon" onClick={updateMode}/>
-            <AiFillDelete className="icon" onClick={deleteTodo} />
+            <MdDelete className="icon" onClick={deleteTodo} />
         </div>
     </div>
   )

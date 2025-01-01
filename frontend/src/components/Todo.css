@@ -79,9 +79,10 @@ input[type="checkbox"]{
 
 .icons{
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    padding-right: 8px;
 }
 
 .icon{
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
