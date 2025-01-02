@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const baseUrl = "http://localhost:5000"
 
@@ -20,19 +21,19 @@ const addTodo = (text, setText, setTodo) => {
         console.log(data);
         setText("")
         getAllTodo(setTodo)
-        toast.success("Todo Successfully Added!");
+        toast.success("Todo Successfully Added!", { autoClose: 1800 });
     })
     .catch((err) => console.log(err))
 }
 
-const updateTodo = (todoId, text, setText, setTodo, setIsUpdating) => {
+const updateTodo = (todoId, text, setText, setTodo, setIsUpdating, cancelUpdate) => {
     axios
     .post(`${baseUrl}/update`, {_id: todoId, text})
     .then((data) => {
         setText("")
         setIsUpdating(false)
         getAllTodo(setTodo)
-        toast.success("Todo Successfully Updated!");
+        toast.success("Todo Successfully Updated!", { autoClose: 1800 });  
     })
     .catch((err) => console.log(err))
 }
@@ -43,7 +44,7 @@ const deleteTodo = (_id, setTodo) => {
     .then((data) => {
         console.log(data)
         getAllTodo(setTodo)
-        toast.success("Todo Successfully Deleted!");
+        toast.success("Todo Successfully Deleted!", { autoClose: 1800 });
     })
     .catch((err) => console.log(err))
 }

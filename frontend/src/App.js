@@ -10,6 +10,7 @@ function App() {
   const [text, setText] = useState("")
   const [isUpdating, setIsUpdating] = useState(false) 
   const [todoId, setTodoId] = useState("")
+  const [cancelUpdate, setCancelUpdate] = useState(false);
 
   useEffect(() => {
     getAllTodo(setTodo)
@@ -27,16 +28,27 @@ function App() {
       return;
     }
     if(isUpdating){
-      updateTodo(todoId, text, setText, setTodo, setIsUpdating)
+      updateTodo(todoId, text, setText, setTodo, setIsUpdating, cancelUpdate)
     } else{
       addTodo(text, setText, setTodo)
     }
   }
 
-  const cancelUpdate = () => {
-    setIsUpdating(false)
-    setText("")
+  const cancel = () => {
+    setCancelUpdate(true);
+    console.log("Cancel clicked");
   }
+
+  useEffect(() => { 
+    //console.log("cancelUpdate state changed:", cancelUpdate); 
+    if (cancelUpdate) { 
+      console.log("Update cancelled."); 
+      setCancelUpdate(false); 
+      setText(""); 
+      setIsUpdating(false)
+      toast.warning("Update Cancelled", { autoClose: 1800 });
+    }
+  }, [cancelUpdate]);
 
   return (
     <div className="App">
@@ -46,7 +58,9 @@ function App() {
 
         <div className="todoList">
           {todo.map((item) => 
-            <Todo key={item._id} text={item.text} 
+            <Todo 
+            key={item._id} 
+            text={item.text} 
             updateMode={() => updateMode(item._id, item.text)}
             deleteTodo={() => deleteTodo(item._id, setTodo)}  
           />)}
@@ -54,9 +68,15 @@ function App() {
 
         <div className = "todoAddUpdate">
           <input type="text" placeholder="Add todos" value={text} onChange={(e) => setText(e.target.value)}/>
-          <div className="actions" onClick={handleAddUpdate}>
-            {isUpdating ? <button className="cancelUpdate" onClick={cancelUpdate}>Cancel</button> : ""}
-            {isUpdating ? <span className="addUpdateBtn">Update</span> : <span className="addUpdateBtn">Add</span>}
+          <div className="actions">
+            {isUpdating ? (
+              <>
+                <button className="cancelUpdate" onClick={cancel}>Cancel</button>
+                <button className="addUpdateBtn" onClick={handleAddUpdate}>Update</button>
+              </>
+            ):(
+              <button className="addUpdateBtn" onClick={handleAddUpdate}>Add</button>
+            )}
           </div>
         </div>
       

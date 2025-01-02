@@ -15,6 +15,7 @@ module.exports.saveTodo = async (req, res) => {
             console.log(data);
             res.send(data)
         })
+        .catch((err) => console.log(err))
 }
 
 module.exports.updateTodo = async (req, res) => {

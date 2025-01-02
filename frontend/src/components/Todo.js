@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Todo.css'
 import { MdDelete } from "react-icons/md";
 import {BiEdit} from 'react-icons/bi'
-import {AiFillDelete} from 'react-icons/ai'
+
 
 
 const Todo = ({text, updateMode, deleteTodo}) => {
