@@ -6,33 +6,45 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
 
-  const [todo, setTodo] = useState([])
-  const [text, setText] = useState("")
-  const [isUpdating, setIsUpdating] = useState(false) 
-  const [todoId, setTodoId] = useState("")
+  const [todo, setTodo] = useState([]);
+  const [text, setText] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [todoId, setTodoId] = useState("");
   const [cancelUpdate, setCancelUpdate] = useState(false);
 
   useEffect(() => {
-    getAllTodo(setTodo)
+    getAllTodo(setTodo);
   }, [])
 
-  const updateMode = (_id, text) => { 
-    setIsUpdating(true)
-    setText(text)
-    setTodoId(_id)
-  }
 
-  const handleAddUpdate = () => {
+  const handleAddUpdate = (e) => {
+    e.preventDefault();
+    
     if(!text.trim()){
-      toast.error("Text is required!");
+      toast.error("Text is required!", { autoClose: 1800 });
       return;
     }
     if(isUpdating){
-      updateTodo(todoId, text, setText, setTodo, setIsUpdating)
+      updateTodo(todoId, text, setText, setTodo, setIsUpdating);
     } else{
-      addTodo(text, setText, setTodo)
+      addTodo(text, setText, setTodo);
     }
   }
+
+
+  const updateMode = (_id, text) => { 
+    setIsUpdating(true);
+    setText(text);
+    setTodoId(_id);
+  }
+
+  const handleKeyPress = (e) => { 
+    if (e.key === 'Enter') { 
+      e.preventDefault();
+      handleAddUpdate(e);
+    }
+  };
+
 
   const cancel = () => {
     setCancelUpdate(true);
@@ -44,8 +56,8 @@ function App() {
     if (cancelUpdate) { 
       console.log("Update cancelled."); 
       setCancelUpdate(false); 
-      setText(""); 
-      setIsUpdating(false)
+      setText(''); 
+      setIsUpdating(false);
       toast.warning("Update Cancelled", { autoClose: 1800 });
     }
   }, [cancelUpdate]);
@@ -56,8 +68,6 @@ function App() {
       <div className="container">
         
         <h1>ToDos</h1>
-
-        
 
         <div className="todoList">
           {todo.map((item) => 
@@ -72,7 +82,7 @@ function App() {
         </div>
 
         <div className = "todoAddUpdate">
-          <input type="text" placeholder="Add todos" value={text} onChange={(e) => setText(e.target.value)}/>
+          <input type="text" placeholder="Add todos" value={text} onChange={(e) => setText(e.target.value)} onKeyPress={handleKeyPress}/>
           <div className="actions">
             {isUpdating ? (
               <>
