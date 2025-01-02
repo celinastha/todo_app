@@ -26,7 +26,7 @@ const addTodo = (text, setText, setTodo) => {
     .catch((err) => console.log(err))
 }
 
-const updateTodo = (todoId, text, setText, setTodo, setIsUpdating, cancelUpdate) => {
+const updateTodo = (todoId, text, setText, setTodo, setIsUpdating) => {
     axios
     .post(`${baseUrl}/update`, {_id: todoId, text})
     .then((data) => {
@@ -49,4 +49,20 @@ const deleteTodo = (_id, setTodo) => {
     .catch((err) => console.log(err))
 }
 
-export {getAllTodo, addTodo, updateTodo, deleteTodo}
+const completeToggle =(_id, setTodo) => {
+    axios
+    .post(`${baseUrl}/completeToggle`, {_id})
+    .then((data) => {
+        console.log(data)
+        getAllTodo(setTodo)
+        if(data.data.tags.includes("complete")){
+            toast.success("COmplete")
+        }
+        else{
+            toast.info("incomplete");
+        }
+    })
+    .catch((err) => console.log(err))
+}
+
+export {getAllTodo, addTodo, updateTodo, deleteTodo, completeToggle}

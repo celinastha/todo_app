@@ -5,16 +5,21 @@ import {BiEdit} from 'react-icons/bi'
 
 
 
-const Todo = ({text, updateMode, deleteTodo}) => {
+const Todo = ({tags, text, updateMode, deleteTodo, completeToggle}) => {
     const [checked, setChecked] = useState(false)
+
+    const complete = () => {
+        setChecked(!checked);
+        completeToggle();
+    }
 
     return (
         <div className="todo">
             <div className="todoContent">
                 <label className="todoText">
-                    <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)}/>
+                    <input type="checkbox" checked={tags.includes("complete")} onChange={complete}/>
                     <span className="checkmark"></span>
-                    <span className={`${checked ? 'checked' : ''}`}> {text} </span>
+                    <span className={`${tags.includes("complete") ? "completed" : ''}`}> {text} </span>
                 </label>
             </div>
             <div className="icons">

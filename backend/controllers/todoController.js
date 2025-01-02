@@ -6,10 +6,10 @@ module.exports.getTodo = async (req, res) => {
 }
 
 module.exports.saveTodo = async (req, res) => {
-    const {text} = req.body
+    const {text} = req.body;
 
     todoModel
-        .create({text})
+        .create({text, tags: 'all'})
         .then((data) => {
             console.log("Added successfully");
             console.log(data);
@@ -32,4 +32,22 @@ module.exports.deleteTodo = async (req, res) => {
         .findByIdAndDelete(_id)
         .then(() => res.send("Deleted Successfully"))
         .catch((err) => console.log(err))
+}
+
+module.exports.completeToggle = async (req, res) => {
+    const {_id} = req.body;
+    const todo = await todoModel.findById(_id);
+    
+    if(todo.tags.includes("complete")){
+        await todoModel
+        .findByIdAndUpdate(_id, {$pull: {tags:"complete"}})
+        .then(() => res.send("Todo is incomplete"))
+        .catch((err) => console.log(err))
+    }
+    else{
+        await todoModel
+        .findByIdAndUpdate(_id, {$addToSet: {tags: "complete"}})
+        .then(() => res.send("Todo completed"))
+        .catch((err) => console.log(err))
+    }
 }

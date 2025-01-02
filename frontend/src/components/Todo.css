@@ -91,7 +91,7 @@ input[type="checkbox"]{
     cursor: pointer;
 }
 
-.checked { 
+.completed { 
     text-decoration: line-through; 
     color: grey;
 }

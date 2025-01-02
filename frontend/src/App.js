@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Todo from './components/Todo';
-import { deleteTodo, updateTodo, addTodo, getAllTodo } from './utils/HandleApi';
+import { completeToggle, deleteTodo, updateTodo, addTodo, getAllTodo } from './utils/HandleApi';
 import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
       return;
     }
     if(isUpdating){
-      updateTodo(todoId, text, setText, setTodo, setIsUpdating, cancelUpdate)
+      updateTodo(todoId, text, setText, setTodo, setIsUpdating)
     } else{
       addTodo(text, setText, setTodo)
     }
@@ -50,19 +50,24 @@ function App() {
     }
   }, [cancelUpdate]);
 
+
   return (
     <div className="App">
       <div className="container">
         
         <h1>ToDos</h1>
 
+        
+
         <div className="todoList">
           {todo.map((item) => 
             <Todo 
             key={item._id} 
+            tags={item.tags}
             text={item.text} 
             updateMode={() => updateMode(item._id, item.text)}
-            deleteTodo={() => deleteTodo(item._id, setTodo)}  
+            deleteTodo={() => deleteTodo(item._id, setTodo)} 
+            completeToggle={() => completeToggle(item._id, setTodo)} 
           />)}
         </div>
 
