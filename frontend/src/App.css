@@ -4,8 +4,6 @@
   box-sizing: border-box;
 }
 
-
-
 body {
   margin: 0;
   height: 100vh;
@@ -32,18 +30,62 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 4vh;
+  
 }
+
+.topSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4.2vh;
+}
+
 
 h1{
   font-size: 3.6em;
   color: rgb(54, 66, 80);
 }
 
+.filterOptions{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+
+.filterOption{
+  font-size: 1em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 110px;
+  padding: 8px 0;
+  border-bottom: 2px solid rgba(53, 56, 58, 0.329);
+}
+
+.activeFilter{
+  font-size: 1em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 110px;
+  padding: 8px 0;
+  border-bottom: 3px solid rgb(72, 124, 167);
+}
+
+
 .todoList{
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.noShownTodo{
+  text-align: center;
+  color: rgb(133, 133, 133);
 }
 
 .todoAddUpdate{
@@ -109,5 +151,26 @@ input[type="text"]:focus {
 @media screen and (max-width: 623px){
   .container{
     width: 90%;
+  }
+}
+@media screen and (max-width: 470px){
+  h1{
+    font-size: 3em;
+  }
+  .filterOption{
+    font-size: 0.9em;
+    width: 100px;
+  }
+}
+@media screen and (max-width: 330px){
+  .container{
+    width: 96%;
+  }
+  h1{
+    font-size: 2.9em;
+  }
+  .filterOption{
+    font-size: 0.9em;
+    width: 100px;
   }
 }

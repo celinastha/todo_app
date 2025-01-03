@@ -1,8 +1,8 @@
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-const baseUrl = "http://localhost:5000"
+const baseUrl = "http://localhost:5000";
 
 const getAllTodo = (setTodo) => {
     axios

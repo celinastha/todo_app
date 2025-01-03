@@ -11,6 +11,7 @@ function App() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [todoId, setTodoId] = useState("");
   const [cancelUpdate, setCancelUpdate] = useState(false);
+  const [todoFilter, setTodoFilter] = useState('all')
 
   useEffect(() => {
     getAllTodo(setTodo);
@@ -62,23 +63,51 @@ function App() {
     }
   }, [cancelUpdate]);
 
+  const show = (filterType) => {
+    if(filterType == 'all'){
+      console.log("All todos are shown");
+      setTodoFilter('all');
+      return;
+    }
+    if(filterType == 'complete'){
+      console.log("Completed todos are shown");
+      setTodoFilter('complete');
+      return;
+      
+    }
+  }
+
+  const filteredTodosList = todo.filter(todoItem => todoItem.tags.includes(todoFilter));
 
   return (
     <div className="App">
       <div className="container">
-        
-        <h1>ToDos</h1>
+        <div className="topSection">
+          <h1>ToDos</h1>
 
-        <div className="todoList">
-          {todo.map((item) => 
-            <Todo 
-            key={item._id} 
-            tags={item.tags}
-            text={item.text} 
-            updateMode={() => updateMode(item._id, item.text)}
-            deleteTodo={() => deleteTodo(item._id, setTodo)} 
-            completeToggle={() => completeToggle(item._id, setTodo)} 
-          />)}
+          <div className="filterOptions">
+            <button className={`filterOption ${(todoFilter==='all') ? 'activeFilter' : ''}`} onClick={() => show('all')}>All</button>
+            <button className={`filterOption ${(todoFilter==='complete') ? 'activeFilter' : ''}`} onClick={() => show('complete')}>Completed</button>
+          </div>
+        </div>
+
+        <div className="todoList">          
+          {filteredTodosList.length === 0? 
+            (
+              <p className="noShownTodo">No todos available. Try adding or completing some!</p>
+            ) : (
+              filteredTodosList.map((item) => 
+                <Todo 
+                  key={item._id} 
+                  tags={item.tags}
+                  text={item.text} 
+                  updateMode={() => updateMode(item._id, item.text)}
+                  deleteTodo={() => deleteTodo(item._id, setTodo)} 
+                  completeToggle={() => completeToggle(item._id, setTodo)} 
+                />
+              )
+            )
+          }
         </div>
 
         <div className = "todoAddUpdate">

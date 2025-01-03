@@ -96,3 +96,17 @@ input[type="checkbox"]{
     color: grey;
 }
 
+@media screen and (max-width: 330px){
+  .todoText{
+    padding-left: 30px;
+    font-size: 0.9em;
+  }
+  
+  .checkmark {
+    width: 18px;
+    height: 18px;
+  }
+  .icon{
+    font-size: 1.1em;
+  }
+}
