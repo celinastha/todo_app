@@ -11,7 +11,7 @@ const PORT = process.env.port || 5000
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://todo-app-p.netlify.app/',
+    origin: '*',
 }))
 
 mongoose
