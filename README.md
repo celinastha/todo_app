@@ -1,7 +1,7 @@
 # Todo App 🧾
 
 This is a todo app made with ReactJS, NodeJS + Express, and MongoDB <br />
-Demo: ** https://todo-app-p.netlify.app/ **
+Demo: **https://todo-app-p.netlify.app/**
 
 ---
 
