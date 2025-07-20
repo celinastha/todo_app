@@ -3,14 +3,14 @@
 This is a todo app made with ReactJS, NodeJS + Express, and MongoDB <br />
 Demo: **https://todo-app-p.netlify.app/**
 
----
+
 
 
 ## Core Features ⭐
 - Add, update, and delete todos
 - Filter completed todos
 
----
+
 
 
 ## Tech Stack 🚀
@@ -20,7 +20,6 @@ Database: MongoDB (url in .env not in git)
 Hosting: Netlify(Frontend), Render(Backend)
 
 
----
 
 
 ## Setup & Installation ⚙️
